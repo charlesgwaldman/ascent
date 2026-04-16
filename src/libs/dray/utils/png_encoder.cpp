@@ -1,4 +1,5 @@
 #include <dray/utils/png_encoder.hpp>
+#include <png_utils/ascent_fs_utils.hpp>
 
 // standard includes
 #include <stdlib.h>
@@ -106,17 +107,18 @@ PNGEncoder::save(const std::string &filename)
 {
   if(m_buffer == NULL)
   {
-    std::cerr<<"Save must be called after encode()\n";
-      /// we have a problem ...!
-      return;
+    std::cerr << "PNGEncoder::save must be called after encode()\n";
+    return;
   }
+
+  ascent::mkdirs(filename);
 
   unsigned error = lpng::lodepng_save_file(m_buffer,
                                            m_buffer_size,
                                            filename.c_str());
   if(error)
   {
-    std::cerr<<"Error saving PNG buffer to file: " << filename<<"\n";
+    std::cerr << "Error saving PNG buffer to file: " << filename << "\n";
   }
 }
 

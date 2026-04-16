@@ -310,7 +310,8 @@ set(dray_thirdparty_libs
     umpire
     camp
     conduit::conduit
-    ascent_lodepng)
+    ascent_lodepng
+    ascent_png_utils)
 
 if(MFEM_FOUND)
     list(APPEND dray_thirdparty_libs mfem)

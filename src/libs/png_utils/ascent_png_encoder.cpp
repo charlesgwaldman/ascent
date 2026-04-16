@@ -11,6 +11,7 @@
 //-----------------------------------------------------------------------------
 
 #include "ascent_png_encoder.hpp"
+#include "ascent_fs_utils.hpp"
 
 // standard includes
 #include <stdlib.h>
@@ -323,17 +324,18 @@ PNGEncoder::Save(const std::string &filename)
 {
     if(m_buffer == NULL)
     {
-        CONDUIT_WARN("Save must be called after encode()")
-        /// we have a problem ...!
+        CONDUIT_ERROR("PNGEncoder::Save must be called after Encode()");
         return;
     }
+
+    mkdirs(filename);
 
     unsigned error = lpng::lodepng_save_file(m_buffer,
                                        m_buffer_size,
                                        filename.c_str());
     if(error)
     {
-        CONDUIT_WARN("Error saving PNG buffer to file: " << filename);
+        CONDUIT_ERROR("Error saving PNG buffer to file: " << filename);
     }
 }
 

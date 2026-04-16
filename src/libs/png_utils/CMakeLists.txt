@@ -3,6 +3,7 @@
 # other details. No copyright assignment is required to contribute to Ascent.
 
 set(ascent_png_utils_headers
+    ascent_fs_utils.hpp
     ascent_png_compare.hpp
     ascent_png_decoder.hpp
     ascent_png_encoder.hpp
@@ -10,6 +11,7 @@ set(ascent_png_utils_headers
   )
 
 set(ascent_png_utils_sources
+    ascent_fs_utils.cpp
     ascent_png_compare.cpp
     ascent_png_decoder.cpp
     ascent_png_encoder.cpp

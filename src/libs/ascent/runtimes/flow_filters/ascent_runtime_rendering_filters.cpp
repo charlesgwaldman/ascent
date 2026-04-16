@@ -1434,12 +1434,6 @@ CreateRenders::execute()
           {
             image_name = render_node["image_name"].as_string();
             image_name = output_dir(image_name);
-
-            conduit::Node err_msg;
-            if(!check_dir_path_exists(image_name, mpi_comm_id, err_msg))
-            {
-              ASCENT_ERROR(err_msg.as_string());
-            }
           }
           else if(render_node.has_path("image_prefix"))
           {
@@ -1447,12 +1441,6 @@ CreateRenders::execute()
             ss<<expand_path_special_variables(render_node["image_prefix"].as_string(), ".png", mpi_comm_id);
             image_name = ss.str();
             image_name = output_dir(image_name);
-
-            conduit::Node err_msg;
-            if(!check_dir_path_exists(image_name, mpi_comm_id, err_msg))
-            {
-              ASCENT_ERROR(err_msg.as_string());
-            }
           }
           else
           {
@@ -1577,12 +1565,6 @@ CreateRenders::execute()
         image_name =  params()["image_prefix"].as_string();
         image_name = expand_path_special_variables(image_name, ".png", mpi_comm_id);
         image_name = output_dir(image_name);
-
-        conduit::Node err_msg;
-        if(!check_dir_path_exists(image_name, mpi_comm_id, err_msg))
-        {
-          ASCENT_ERROR(err_msg.as_string());
-        }
       }
 
       viskores::Bounds scene_bounds(bounds);
